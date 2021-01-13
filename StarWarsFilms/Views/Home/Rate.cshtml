@@ -1,0 +1,29 @@
+﻿@model RatingViewModel
+@{ ViewBag.Title = "Rate"; }
+
+<div class="row page-box">
+    <div class="col-sm-12">
+        <h2>Episode: @Model.EpisodeId</h2>
+        <h2>Title: @Model.Title</h2>
+        @using (Html.BeginForm("Rate"))
+        {
+            @Html.HiddenFor(m => m.Title);
+            @Html.HiddenFor(m => m.EpisodeId);
+            <div class="form-group">
+                @Html.LabelFor(m => m.Username)
+                @Html.EditorFor(m => m.Username, new { htmlAttributes = new { @class = "form-control", @required = "required" } })
+                @Html.ValidationMessageFor(m => m.Username, "Username is required", new { @class = "text-danger" })
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(m => m.FilmRating, "Rating")
+                @Html.EditorFor(m => m.FilmRating, new { htmlAttributes = new { @class = "form-control", @required = "required", @min = "1", @max = "5" } })
+                @Html.ValidationMessageFor(m => m.Username, "Rating is required", new { @class = "text-danger" })
+            </div>
+
+            <div class="form-group">
+                <button type="submit" class="btn btn-primary">Rate</button>
+            </div>
+        }
+    </div>
+</div>

@@ -1,0 +1,29 @@
+﻿@model IEnumerable<FilmViewModel>
+@{ ViewBag.Title = "Home"; }
+
+<div class="text-center">
+    <table class="table table-striped table-hover">
+        <thead class="thead-dark">
+            <tr>
+                <th scope="col">Title</th>
+                <th scope="col">Episode</th>
+            </tr>
+        </thead>
+        <tbody>
+            @if (Model != null)
+            {
+                @foreach (var film in Model?.OrderBy(o => o.EpisodeId))
+                {
+                    <tr>
+                        <td>@Html.ActionLink(film.Title, "Details", new { id = film.EpisodeId })</td>
+                        <td>@film.EpisodeId</td>
+                    </tr>
+                }
+            }
+            else
+            {
+                <p>Failed to load data.</p>
+            }
+        </tbody>
+    </table>
+</div>

@@ -1,0 +1,49 @@
+﻿@model FilmDetailsViewModel
+@{ ViewBag.Title = "Details"; }
+
+<style>
+    label {
+        font-weight: 500
+    }
+</style>
+
+<div class="text-left">
+    <h2>Details:</h2>
+    <div class="offer-details">
+        <div>
+            <label>Title:</label>
+            <span>@Model?.Film?.Title</span>
+        </div>
+        <div>
+            <label>Episode:</label>
+            <span>@Model?.Film?.EpisodeId</span>
+        </div>
+        <div>
+            <label>Director:</label>
+            <span>@Model?.Film?.Director</span>
+        </div>
+        <div>
+            <label>Producer:</label>
+            <span>@Model?.Film?.Producer</span>
+        </div>
+        <div>
+            <label>Episode crawl:</label>
+            <span>@Model?.Film?.EpisodeCrawl</span>
+        </div>
+        <div>
+            <label>Release date:</label>
+            <span>@Model?.Film?.ReleaseDate</span>
+        </div>
+        <div>
+            @Html.ActionLink("Rate", "Rate", new { id = Model.Film?.EpisodeId }, new { @class = "btn btn-primary" })
+        </div>
+
+        <h2>Ratings:</h2>
+        @foreach (var rating in Model?.Ratings)
+        {
+            <p>@rating.Username : @rating.FilmRating</p>
+        }
+    </div>
+    <br />
+    @Html.ActionLink("Back", "Index", "Home", null, new { @class = "btn btn-primary" })
+</div>
